@@ -41,7 +41,7 @@ const getReviewersByIndex = (index) => {
 
 // Pick reviewers
 const todayReviewers = getReviewersByIndex(weekdaysSinceEpoch % rotation1.length);
-const tomorrowReviewers = getReviewersByIndex((weekdaysSinceEpoch + 3) % rotation1.length);
+const tomorrowReviewers = getReviewersByIndex((weekdaysSinceEpoch + 1) % rotation1.length);
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -58,7 +58,6 @@ const app = new App({
 
   await app.client.chat.postMessage({
     channel: '#clientz-internal',
-    text: '@Gabe Rogan',
     text: `Today's reviewers: ${todayReviewers.join(', ')}.\nTomorrow's reviewers: ${tomorrowReviewers.join(', ')}.`,
   })
 
