@@ -2,13 +2,6 @@ require('dotenv').config();
 const { App } = require('@slack/bolt');
 const { differenceInWeeks } = require('date-fns');
 
-
-// Just a way to count weekdays
-const now = new Date();
-const weeksSinceEpoch = differenceInWeeks(now, new Date('2023-01-01'), /* Sunday */ { roundingMethod: 'floor' });
-const dayOfWeek = now.getDay() - 1;
-const weekdaysSinceEpoch = weeksSinceEpoch * 5 + dayOfWeek;
-
 // Members, ids required for mentions
 // Find user ids like this: https://www.workast.com/help/article/how-to-find-a-slack-user-id/
 const Tommy = '<@U03GCNZKG3U>'
@@ -30,30 +23,29 @@ const rotation1 = [Tommy, Gabe, Benji, Joshua];
 const rotation2 = [Jeferson, Burhan, Christian, Brett];
 const rotation3 = [CJ, Ken, Ahsan, Artem];
 
-// We can change this but the script is currently designed same length rotations
-if (rotation1.length !== rotation2.length || rotation1.length !== rotation3.length) {
-  throw new Error('Rotations should have the same length');
-}
+exports.handler = async () => {
+  // We can change this but the script is currently designed same length rotations
+  if (rotation1.length !== rotation2.length || rotation1.length !== rotation3.length) {
+    throw new Error('Rotations should have the same length');
+  }
 
-const getReviewersByIndex = (index) => {
-  return [rotation1[index], rotation2[index], rotation3[index]];
-}
+  // Just a way to count weekdays
+  const now = new Date();
+  const weeksSinceEpoch = differenceInWeeks(now, new Date('2023-01-01'), /* Sunday */ { roundingMethod: 'floor' });
+  const dayOfWeek = now.getDay() - 1;
+  const weekdaysSinceEpoch = weeksSinceEpoch * 5 + dayOfWeek;
 
-// Pick reviewers
-const todayReviewers = getReviewersByIndex(weekdaysSinceEpoch % rotation1.length);
-const tomorrowReviewers = getReviewersByIndex((weekdaysSinceEpoch + 1) % rotation1.length);
+  // Pick reviewers
+  const getReviewersByIndex = (index) => [rotation1[index], rotation2[index], rotation3[index]];
+  const todayReviewers = getReviewersByIndex(weekdaysSinceEpoch % rotation1.length);
+  const tomorrowReviewers = getReviewersByIndex((weekdaysSinceEpoch + 1) % rotation1.length);
 
-const app = new App({
-  token: process.env.SLACK_BOT_TOKEN,
-  signingSecret: process.env.SLACK_SIGNING_SECRET,
-  // socketMode: true,
-  // appToken: process.env.SLACK_APP_TOKEN,
-  // Socket Mode doesn't listen on a port, but in case you want your app to respond to OAuth,
-  // you still need to listen on some port!
-  // port: process.env.PORT || 3000
-});
+  // Start slack bolt app and send message
+  const app = new App({
+    token: process.env.SLACK_BOT_TOKEN,
+    signingSecret: process.env.SLACK_SIGNING_SECRET,
+  });
 
-(async () => {
   await app.start();
 
   await app.client.chat.postMessage({
@@ -64,4 +56,4 @@ const app = new App({
   await app.stop();
 
   process.exit(0);
-})();
+}
