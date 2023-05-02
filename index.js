@@ -54,6 +54,4 @@ exports.handler = async () => {
   })
 
   await app.stop();
-
-  process.exit(0);
 }
