@@ -56,7 +56,7 @@ exports.handler = async () => {
   await app.start()
 
   await app.client.chat.postMessage({
-    channel: '#clientz-internal',
+    channel: `#${process.env.SLACK_CHANNEL}`,
     text: `Today's reviewers: ${todayReviewers.join(', ')}.\nTomorrow's reviewers: ${tomorrowReviewers.join(', ')}.`,
   })
 
