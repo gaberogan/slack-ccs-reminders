@@ -26,10 +26,10 @@ const Sam = '<@U05DLNWNBNV>'
 // const Tim = '<@U031MFG63FA>' - not in rotation
 
 // See skills sheet to make rotations https://docs.google.com/spreadsheets/d/1RpI3L4dEzy9XLHY1Zi1o7MddlepGvM4XAg0H45iZ6iI/edit#gid=0
-const group1 = [Tommy, Jesse, CJ, Oleksandr, Andrii]
+const group1 = [Tommy, Brett, CJ, Oleksandr, Andrii]
 const group2 = [Gabe, Sam, Ken, Burhan, Vasyl]
 const group3 = [John, Joseph, Ahsan, Roman, Marko]
-const group4 = [Joshua, Artem, Brett, Denys]
+const group4 = [Joshua, Jesse, Artem, Denys]
 
 const rotation = [group1, group2, group3, group4]
 
