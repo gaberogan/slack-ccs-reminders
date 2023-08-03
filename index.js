@@ -8,20 +8,20 @@ const Tommy = '<@U03GCNZKG3U>'
 const Gabe = '<@U03FL4LNCRW>'
 const Benji = '<@U03B81S4QEN>'
 const Joshua = '<@UJNLRPGMS>'
-const Jeferson = '<@U03HWKKQ1MX>'
 const CJ = '<@U03DBHKAK9T>'
 const Brett = '<@UT4SH1ZNX>'
 const Burhan = '<@U042ENP5AKT>'
 const Ahsan = '<@U04C4F8QBFE>'
 const Artem = '<@U03740LFH6D>'
-const Christian = '<@U03G9RULWJH>'
 const Ken = '<@U0185215CGL>'
+const Jesse = '<@U052VKWU1S5>'
+const John = '<@U056RB01535>'
 // const Tim = '<@U031MFG63FA>' - not in rotation
 
 // See skills sheet to make rotations https://docs.google.com/spreadsheets/d/1RpI3L4dEzy9XLHY1Zi1o7MddlepGvM4XAg0H45iZ6iI/edit#gid=0
 const rotation1 = [Tommy, Gabe, Benji, Joshua];
-const rotation2 = [Jeferson, Burhan, Christian, Brett];
-const rotation3 = [CJ, Ken, Ahsan, Artem];
+const rotation2 = [Jesse, Ken, John, Artem];
+const rotation3 = [CJ, Burhan, Ahsan, Brett];
 
 exports.handler = async () => {
   // We can change this but the script is currently designed same length rotations

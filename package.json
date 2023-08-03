@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node test.js",
+    "test": "node test.js",
+    "start": "npm run test",
     "zip": "./zipForLambda.sh"
   },
   "keywords": [],
